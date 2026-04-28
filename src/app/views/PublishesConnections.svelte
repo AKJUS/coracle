@@ -65,7 +65,11 @@
     }}>
     <div class="flex min-w-0 shrink-0 items-start gap-3">
       {#if relay?.icon}
-        <img class="h-9 w-9 shrink-0 rounded-full border" src={relay.icon} />
+        <img
+          loading="lazy"
+          decoding="async"
+          class="h-9 w-9 shrink-0 rounded-full border"
+          src={relay.icon} />
       {:else}
         <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border">
           <i class="fa fa-server text-xl text-neutral-100"></i>

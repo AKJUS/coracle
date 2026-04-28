@@ -15,7 +15,7 @@
   const isSpotify = url.match(/open.spotify.com/)
   const isTidal = url.match(/tidal.com/)
   const isVideo = url.match(/\.(mov|webm|mp4)$/)
-  const isImage = url.match(/\.(jpe?g|png|gif|webp)$/)
+  const isImage = url.split("?")[0].match(/\.(jpe?g|png|gif|webp|avif|bmp|svg)$/i)
 
   const linkClickHandler = (event: any) => onLinkClick(url, event)
   const imageClickHandler = (event: any) => onImageClick(url, event)

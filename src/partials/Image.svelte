@@ -1,4 +1,5 @@
 <script lang="ts">
+  import {onDestroy} from "svelte"
   import {ensurePlural} from "@welshman/lib"
   import {imgproxy} from "src/engine"
 
@@ -8,26 +9,52 @@
   const urls = ensurePlural(src)
 
   let i = 0
+  let proxyFailed = false
   let loading = true
+  let timeout = null
+
+  const clearTimer = () => {
+    if (timeout) {
+      clearTimeout(timeout)
+      timeout = null
+    }
+  }
+
+  const handleFailure = () => {
+    if (!proxyFailed) {
+      proxyFailed = true
+    } else if (i < urls.length - 1) {
+      i++
+      proxyFailed = false
+    }
+  }
 
   const onLoad = () => {
     loading = false
+    clearTimer()
   }
 
-  const onError = () => {
-    if (i < urls.length - 1) {
-      i++
+  $: displayedSrc = proxyFailed ? urls[i] : imgproxy(urls[i])
+
+  $: {
+    clearTimer()
+    if (!proxyFailed && displayedSrc !== urls[i]) {
+      timeout = setTimeout(handleFailure, 8000)
     }
   }
+
+  onDestroy(clearTimer)
 </script>
 
 <img
   {...$$props}
-  class:hidden={loading}
-  on:error={onError}
+  loading="lazy"
+  decoding="async"
+  class:opacity-0={loading}
+  on:error={handleFailure}
   on:load={onLoad}
   on:click={onClick}
-  src={imgproxy(urls[i])} />
+  src={displayedSrc} />
 
 {#if loading}
   <div class="shimmer h-64 w-96" />

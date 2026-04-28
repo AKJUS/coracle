@@ -279,14 +279,18 @@ export function getSetting<T = any>(k: string): T {
 export const imgproxy = (url: string, {w = 640, h = 1024} = {}) => {
   const base = getSetting("imgproxy_url")
 
-  if (!base || !url || url.match("gif$")) {
+  if (!base || !url) {
     return url
   }
 
   url = url.split("?")[0]
 
+  if (url.match(/gif$/i)) {
+    return url
+  }
+
   try {
-    return base && url ? `${ensureProto(base)}/x/s:${w}:${h}/${btoa(url)}` : url
+    return `${ensureProto(base)}/x/s:${w}:${h}/${btoa(url)}`
   } catch (e) {
     return url
   }

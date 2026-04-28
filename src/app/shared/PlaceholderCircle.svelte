@@ -10,10 +10,10 @@
 </script>
 
 <div
-  class="{cx(
+  class={cx(
     $$props.class,
-    `flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-cover bg-center bg-neutral-800`,
-  )}">
+    `flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-neutral-800 bg-cover bg-center`,
+  )}>
   <svg
     class="h-full w-1/2"
     width="17"

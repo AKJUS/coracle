@@ -28,6 +28,8 @@
   {:then { title, description, image }}
     {#if image && !hideImage}
       <img
+        loading="lazy"
+        decoding="async"
         alt="Link preview"
         src={imgproxy(image)}
         on:error={onError}

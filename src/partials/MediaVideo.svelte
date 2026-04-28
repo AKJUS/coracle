@@ -61,7 +61,12 @@
 
 {#if !loaded}
   {#if thumbnail}
-    <img src={thumbnail} alt="" class="max-h-96 object-contain object-center" />
+    <img
+      loading="lazy"
+      decoding="async"
+      src={thumbnail}
+      alt=""
+      class="max-h-96 object-contain object-center" />
   {:else}
     <div class="shimmer h-64 w-96" />
   {/if}

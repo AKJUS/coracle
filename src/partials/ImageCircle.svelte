@@ -9,4 +9,6 @@
 
 <div
   class={cx($$props.class, "shrink-0 overflow-hidden rounded-full bg-cover bg-center")}
-  style={`background-image: url(${url}); ${$$props.style || ""}`} />
+  style={$$props.style || ""}>
+  <img loading="lazy" decoding="async" src={url} class="h-full w-full object-cover" alt="" />
+</div>

@@ -3,11 +3,14 @@
 
   export let url: string = undefined
   export let name: string
-
 </script>
 
 {#if url}
-  <img src={imgproxy(url, {w: 24, h: 24})} class="h-[1em] min-w-[1em] -mt-0.5 align-middle inline"/>
+  <img
+    loading="lazy"
+    decoding="async"
+    src={imgproxy(url, {w: 24, h: 24})}
+    class="-mt-0.5 inline h-[1em] min-w-[1em] align-middle" />
 {:else}
   :{name}:
 {/if}

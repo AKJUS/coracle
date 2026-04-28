@@ -371,11 +371,11 @@ body,
 /* anchors and buttons */
 
 .btn {
-  @apply bg-white text-black text-xl staatliches rounded whitespace-nowrap flex justify-center items-center gap-2 px-6 h-7 transition-all;
+  @apply staatliches flex h-7 items-center justify-center gap-2 whitespace-nowrap rounded bg-white px-6 text-xl text-black transition-all;
 }
 
 .btn.btn-disabled {
-  @apply opacity-50 pointer-events-none;
+  @apply pointer-events-none opacity-50;
 }
 
 .btn.btn-low {
@@ -395,15 +395,15 @@ body,
 }
 
 .btn.btn-danger {
-  @apply text-danger border border-solid border-danger;
+  @apply border border-solid border-danger text-danger;
 }
 
 .btn.btn-circle {
-  @apply aspect-square flex justify-center items-center rounded-full !p-0 w-7;
+  @apply flex aspect-square w-7 items-center justify-center rounded-full !p-0;
 }
 
 .btn.btn-square {
-  @apply aspect-square flex justify-center items-center;
+  @apply flex aspect-square items-center justify-center;
 }
 
 .btn.btn-tall {

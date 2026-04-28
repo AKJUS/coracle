@@ -6,7 +6,10 @@
   import PublishCard from "src/app/shared/PublishCard.svelte"
   import {pluralize} from "src/util/misc"
 
-  $: recent = uniqBy(t => t.event.id, $thunks.filter(t => t.event.created_at > ago(DAY)))
+  $: recent = uniqBy(
+    t => t.event.id,
+    $thunks.filter(t => t.event.created_at > ago(DAY)),
+  )
 
   $: relays = new Set(
     remove(
